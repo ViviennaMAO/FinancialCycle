@@ -1,0 +1,33 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Env (never commit secrets)
+.env
+.env.local
+.env.*.local
+
+# Vercel
+.vercel/
+
+# Cloudflare wrangler local state (if you ever ran the CF path)
+fred-proxy-deploy/
+.wrangler/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+
+# Luffa Cloud-Devtools local cache
+.luffa/
+miniprogram/.luffa/
+
+# Source book PDF (copyrighted — never commit)
+*.pdf

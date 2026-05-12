@@ -1,0 +1,36 @@
+{
+	"description": "金融周期互动学习小程序 — Long Good Buy on Luffa SuperBox",
+	"projectname": "financial-cycle",
+	"TCMPPappid": "REPLACE_WITH_YOUR_APPID",
+	"compileType": "miniprogram",
+	"libVersion": "2.30.4",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"enhance": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"uglifyFileName": true,
+		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
+		"lazyloadPlaceholderEnable": false,
+		"useMultiFrameRuntime": true,
+		"useApiHook": true,
+		"useApiHostProcess": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"showShadowRootInWxmlPanel": true,
+		"packNpmRelationList": [],
+		"nodeModules": true,
+		"autoAudits": false,
+		"remoteDebugLogEnable": true,
+		"prefetch": false
+	},
+	"LuffaToolsappid": "mpkboyj2fc3l4u7q",
+	"scripts": {},
+	"condition": {}
+}

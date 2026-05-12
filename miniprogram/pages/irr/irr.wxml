@@ -1,0 +1,66 @@
+<view class="page-wrap">
+
+  <view class="card">
+    <view class="card-h">
+      <text class="card-tag">IRR</text>
+      <text class="card-title">内部收益率 · 周期对照</text>
+    </view>
+    <view class="card-body">
+      IRR 是让 NPV = 0 的折现率 — 也就是项目"内生"的年化回报。
+      <text class="accent"> 但 IRR 高 ≠ 值得做</text>:你要把它和当前周期的"机会成本"(WACC / 市场要求回报)比较,
+      还要警惕乐观期对未来现金流的系统性高估。
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title" style="font-size:28rpx;">情景模板</view>
+    <view style="margin-top:12rpx;">
+      <view wx:for="{{scenarios}}" wx:key="name"
+            class="phase-pill {{currentScenario===item.name?'active':''}}"
+            bindtap="useScenario" data-name="{{item.name}}">{{item.name}}</view>
+    </view>
+    <view class="muted" style="margin-top:16rpx;font-size:22rpx;">{{scenarioDesc}}</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title" style="font-size:28rpx;">现金流</view>
+    <view style="margin-top:16rpx;display:flex;flex-wrap:wrap;">
+      <view wx:for="{{cashflows}}" wx:key="*this" wx:for-index="i" class="cf-pill">
+        <text class="muted">Y{{i}}</text>
+        <input class="input-field" type="digit" value="{{item}}"
+               data-idx="{{i}}" bindinput="onCfChange" />
+      </view>
+    </view>
+  </view>
+
+  <view class="result-block">
+    <view class="result-label">这个项目的内部收益率 IRR</view>
+    <view class="result-value">{{irrPct}}</view>
+    <view class="muted" style="font-size:22rpx;margin-top:8rpx;">{{irrStatus}}</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title" style="font-size:28rpx;">vs 各周期阶段的"市场要求回报"</view>
+    <view class="muted" style="font-size:22rpx;margin-bottom:12rpx;">
+      若 IRR &gt; 阶段要求回报 → 项目在该阶段创造价值
+    </view>
+    <view class="table">
+      <view class="tr th">
+        <text class="td">阶段</text>
+        <text class="td">要求回报</text>
+        <text class="td">超额</text>
+      </view>
+      <view wx:for="{{phaseRows}}" wx:key="key" class="tr">
+        <text class="td"><text class="phase-pill {{item.beats?'active':''}}">{{item.label}}</text></text>
+        <text class="td muted">{{item.hurdlePct}}%</text>
+        <text class="td {{item.beats?'success':'danger'}}">{{item.spread}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title" style="font-size:28rpx;">关键观察</view>
+    <view class="card-body">{{insight}}</view>
+  </view>
+
+</view>

@@ -1,0 +1,126 @@
+<view class="page-wrap">
+
+  <view class="card">
+    <view class="card-h">
+      <text class="card-tag">WACC</text>
+      <text class="card-title">加权资本成本 · 零利率版</text>
+    </view>
+    <view class="card-body">
+      <text class="accent">WACC = (E/V)·Re + (D/V)·Rd·(1-t)</text>
+      · 其中 Re = Rf + β·ERP (CAPM)。
+      本书第十章告诉你:无风险利率 Rf 从 5% → 0% 不只是把 Re 削平 5 个点,
+      它会同时压低 g、抬高 ERP,可能反而让股票更贵。
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title" style="font-size:28rpx;">资本结构</view>
+
+    <view style="margin-top:16rpx;">
+      <view class="input-label">股权权重 E/V · {{equityPct}}%</view>
+      <slider min="0" max="100" step="5" value="{{equityPct}}"
+              activeColor="#f0b429" backgroundColor="#1f3a5f"
+              block-color="#f0b429" block-size="20"
+              bindchange="onEquityChange" />
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title" style="font-size:28rpx;">股权成本 Re (CAPM)</view>
+
+    <view style="margin-top:16rpx;">
+      <view class="row">
+        <view class="input-label" style="flex:1;">无风险利率 Rf · {{rfPct}}%</view>
+        <view class="btn btn-ghost" style="padding:8rpx 16rpx;font-size:20rpx;flex:0 0 auto;"
+              bindtap="syncRfFromFred">
+          {{fredSyncing?'同步中…':'📡 FRED'}}
+        </view>
+      </view>
+      <slider min="0" max="80" step="1" value="{{rf10}}"
+              activeColor="#f0b429" backgroundColor="#1f3a5f"
+              block-color="#f0b429" block-size="20"
+              bindchange="onRfChange" />
+      <view class="muted" style="font-size:22rpx;">滑到 0 看零利率,滑到 5%+ 模拟 1990s,滑到 8% 看 1980s</view>
+      <view wx:if="{{fredSyncMsg}}" class="muted" style="font-size:22rpx;margin-top:8rpx;color:#22c55e;">
+        {{fredSyncMsg}}
+      </view>
+    </view>
+
+    <view style="margin-top:24rpx;">
+      <view class="input-label">Beta β · {{beta}}</view>
+      <slider min="2" max="30" step="1" value="{{beta10}}"
+              activeColor="#f0b429" backgroundColor="#1f3a5f"
+              block-color="#f0b429" block-size="20"
+              bindchange="onBetaChange" />
+      <view class="muted" style="font-size:22rpx;">公用事业 ~0.5,大盘 ~1,科技/周期股 1.3–1.8</view>
+    </view>
+
+    <view style="margin-top:24rpx;">
+      <view class="input-label">股权风险溢价 ERP · {{erpPct}}%</view>
+      <slider min="20" max="100" step="5" value="{{erp100}}"
+              activeColor="#f0b429" backgroundColor="#1f3a5f"
+              block-color="#f0b429" block-size="20"
+              bindchange="onErpChange" />
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-title" style="font-size:28rpx;">债务</view>
+
+    <view style="margin-top:16rpx;">
+      <view class="input-label">税前债务成本 Rd · {{rdPct}}%</view>
+      <slider min="0" max="120" step="5" value="{{rd10}}"
+              activeColor="#f0b429" backgroundColor="#1f3a5f"
+              block-color="#f0b429" block-size="20"
+              bindchange="onRdChange" />
+    </view>
+
+    <view style="margin-top:24rpx;">
+      <view class="input-label">企业所得税率 · {{taxPct}}%</view>
+      <slider min="0" max="50" step="1" value="{{tax100}}"
+              activeColor="#f0b429" backgroundColor="#1f3a5f"
+              block-color="#f0b429" block-size="20"
+              bindchange="onTaxChange" />
+    </view>
+  </view>
+
+  <view class="result-block">
+    <view class="result-label">股权成本 Re = Rf + β·ERP</view>
+    <view class="result-value" style="font-size:36rpx;color:#22c55e;">{{rePct}}%</view>
+  </view>
+
+  <view class="result-block" style="margin-top:16rpx;">
+    <view class="result-label">税后债务成本 Rd·(1-t)</view>
+    <view class="result-value" style="font-size:36rpx;color:#22c55e;">{{rdAtPct}}%</view>
+  </view>
+
+  <view class="result-block" style="margin-top:16rpx;border-left-color:#22c55e;">
+    <view class="result-label">加权平均资本成本 WACC</view>
+    <view class="result-value">{{waccPct}}%</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title" style="font-size:28rpx;">关键观察</view>
+    <view class="card-body">{{insight}}</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title" style="font-size:28rpx;">三个"周期快照"对照</view>
+    <view class="muted" style="font-size:22rpx;">把当前股权权重和 Beta 固定,只改 Rf 与 ERP,看不同年代的 WACC:</view>
+    <view class="table">
+      <view class="tr th">
+        <text class="td">年代/情景</text>
+        <text class="td">Rf</text>
+        <text class="td">ERP</text>
+        <text class="td">WACC</text>
+      </view>
+      <view wx:for="{{snapshots}}" wx:key="name" class="tr">
+        <text class="td accent">{{item.name}}</text>
+        <text class="td muted">{{item.rf}}%</text>
+        <text class="td muted">{{item.erp}}%</text>
+        <text class="td success">{{item.wacc}}%</text>
+      </view>
+    </view>
+  </view>
+
+</view>

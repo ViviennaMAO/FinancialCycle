@@ -1,0 +1,6 @@
+{
+  "desc": "金融周期互动学习",
+  "rules": [
+    { "action": "allow", "page": "*" }
+  ]
+}

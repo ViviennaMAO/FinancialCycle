@@ -1,0 +1,19 @@
+<view class="page-wrap">
+
+  <view class="hero">
+    <view class="hero-title" style="font-size:36rpx;">反预期事实表</view>
+    <view class="hero-sub">每一条都违反"市场常识",但都有书中的数据 / 历史案例佐证</view>
+    <view class="hero-en">11 chapters, 11 contrarian truths</view>
+  </view>
+
+  <view class="card" wx:for="{{items}}" wx:key="id" bindtap="openChapter" data-id="{{item.id}}">
+    <view class="card-h">
+      <text class="card-tag">第{{item.cnNum}}章</text>
+      <text class="card-title" style="font-size:28rpx;">{{item.title}}</text>
+    </view>
+    <view class="twist-hook" style="margin-top:8rpx;">⚡ {{item.twist.hook}}</view>
+    <view class="card-body" style="margin-top:16rpx;font-size:24rpx;">{{item.twist.body}}</view>
+    <view class="muted" style="font-size:22rpx;margin-top:16rpx;">→ 点开做判断题</view>
+  </view>
+
+</view>

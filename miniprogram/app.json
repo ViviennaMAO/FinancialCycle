@@ -1,0 +1,32 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/npv/npv",
+    "pages/irr/irr",
+    "pages/wacc/wacc",
+    "pages/twist/twist",
+    "pages/chapter/chapter"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#0a1628",
+    "navigationBarTitleText": "金融周期",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0a1628"
+  },
+  "tabBar": {
+    "color": "#7a8aa3",
+    "selectedColor": "#f0b429",
+    "backgroundColor": "#0a1628",
+    "borderStyle": "black",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "目录" },
+      { "pagePath": "pages/npv/npv",     "text": "NPV"  },
+      { "pagePath": "pages/irr/irr",     "text": "IRR"  },
+      { "pagePath": "pages/wacc/wacc",   "text": "WACC" },
+      { "pagePath": "pages/twist/twist", "text": "反预期" }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

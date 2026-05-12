@@ -1,0 +1,51 @@
+<view class="page-wrap" wx:if="{{chapter}}">
+
+  <view class="hero">
+    <view class="muted" style="font-size:22rpx;">{{chapter.part}}</view>
+    <view class="hero-title" style="font-size:38rpx;margin-top:8rpx;">第{{cnNum}}章 · {{chapter.title}}</view>
+    <view class="hero-sub" style="margin-top:16rpx;">{{chapter.summary}}</view>
+  </view>
+
+  <view class="card">
+    <view class="card-h">
+      <text class="card-tag">反预期</text>
+      <text class="card-title" style="font-size:28rpx;">这一章颠覆什么直觉?</text>
+    </view>
+    <view class="twist-hook" style="margin-top:12rpx;font-size:28rpx;">{{chapter.twist.hook}}</view>
+    <view class="card-body" style="margin-top:16rpx;">{{chapter.twist.body}}</view>
+  </view>
+
+  <view class="card">
+    <view class="card-h">
+      <text class="card-tag" style="background:#22c55e;">判断题</text>
+      <text class="card-title" style="font-size:28rpx;">{{chapter.twist.quiz.q}}</text>
+    </view>
+    <view wx:for="{{chapter.twist.quiz.options}}" wx:key="t"
+          wx:for-item="opt" wx:for-index="i"
+          class="option {{answered && selectedIdx===i ? (opt.correct?'option-correct':'option-wrong') : ''}} {{answered && opt.correct && selectedIdx!==i ? 'option-reveal':''}}"
+          bindtap="pick" data-idx="{{i}}">
+      <text class="opt-letter">{{letters[i]}}</text>
+      <text class="opt-text">{{opt.t}}</text>
+    </view>
+
+    <view wx:if="{{answered}}" class="result-block" style="margin-top:24rpx;">
+      <view class="result-label">{{isCorrect?'✅ 答对了':'❌ 再想想'}}</view>
+      <view class="card-body" style="margin-top:8rpx;">{{chapter.twist.quiz.why}}</view>
+    </view>
+  </view>
+
+  <view class="row" style="margin-top:24rpx;">
+    <view class="col btn btn-ghost" bindtap="goPrev" wx:if="{{prevId}}">← 上一章</view>
+    <view class="col btn btn-ghost" bindtap="goNext" wx:if="{{nextId}}">下一章 →</view>
+  </view>
+
+  <view class="card" style="margin-top:24rpx;">
+    <view class="card-title" style="font-size:26rpx;">把这一章和模拟器关联起来</view>
+    <view class="row" style="margin-top:16rpx;">
+      <view class="col btn btn-ghost" bindtap="goSim" data-sim="npv">→ NPV</view>
+      <view class="col btn btn-ghost" bindtap="goSim" data-sim="irr">→ IRR</view>
+      <view class="col btn btn-ghost" bindtap="goSim" data-sim="wacc">→ WACC</view>
+    </view>
+  </view>
+
+</view>
