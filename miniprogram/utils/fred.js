@@ -8,10 +8,9 @@
 
 const cache = require('./cache.js');
 
-// ↓↓↓ CHANGE THIS to your deployed proxy URL ↓↓↓
-// Vercel:      'https://YOUR_PROJECT.vercel.app/api/fred'
-// Cloudflare:  'https://fred-proxy.YOUR_SUBDOMAIN.workers.dev'
-const PROXY_BASE = 'https://YOUR_PROJECT.vercel.app/api/fred';
+// Deployed Vercel proxy. Holds FRED_API_KEY as a Vercel env var,
+// never in this bundle. See top-level README.md for redeploy steps.
+const PROXY_BASE = 'https://financial-cycle.vercel.app/api/fred';
 
 const TTL_12H = 12 * 3600 * 1000;
 
