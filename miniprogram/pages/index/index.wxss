@@ -1,5 +1,28 @@
 .chapter-item:active { opacity: 0.7; }
 
+.chapter-h-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12rpx;
+  margin-bottom: 4rpx;
+}
+.chapter-badge {
+  background: #1f3a5f;
+  color: #f0b429;
+  font-size: 20rpx;
+  padding: 4rpx 14rpx;
+  border-radius: 12rpx;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.chapter-oneline {
+  color: #cbd5e1;
+  font-size: 24rpx;
+  margin-top: 12rpx;
+  line-height: 1.55;
+}
+
 .fred-card { border-color: #22c55e; }
 
 .fred-grid {

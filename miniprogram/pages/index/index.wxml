@@ -41,22 +41,25 @@
   <view class="card">
     <view class="card-title">这本互动手册做什么?</view>
     <view class="card-body">
-      用 3 个交互模拟器和 11 个反预期事件,把这本高盛首席策略师 35 年经验之书"拆"给你:
+      把这本高盛首席策略师 35 年经验之书"拆"给你 — 每章一份高度浓缩的阅读笔记,加上 3 个能动手玩的模拟器:
     </view>
     <view style="margin-top:16rpx;line-height:2;">
-      <view><text class="accent">·NPV</text> <text class="muted">— 用周期视角看现金流的折现价值</text></view>
-      <view><text class="accent">·IRR</text> <text class="muted">— 把项目内部收益率放进 4 阶段周期里比</text></view>
-      <view><text class="accent">·WACC</text> <text class="muted">— 拆开股权 + 债务,看零利率如何重塑估值</text></view>
-      <view><text class="accent">·反预期</text> <text class="muted">— 每章一个颠覆直觉的事件 + 判断题</text></view>
+      <view><text class="accent">·阅读笔记</text> <text class="muted">— 每章 6-8 张分类卡片(洞察 / 数据 / 案例 / 警示 / 金句)</text></view>
+      <view><text class="accent">·反预期题</text> <text class="muted">— 每章一道判断题,先猜再揭晓</text></view>
+      <view><text class="accent">·三个模拟器</text> <text class="muted">— NPV / IRR / WACC,带周期阶段感知</text></view>
+      <view><text class="accent">·实时数据</text> <text class="muted">— 接 FRED,让书的论点活在今天的市场</text></view>
     </view>
   </view>
 
-  <view class="section-h">11 章 · 每章一个反预期</view>
+  <view class="section-h">11 章 · 每章一份阅读笔记</view>
 
   <view wx:for="{{chapters}}" wx:key="id" class="chapter-item" bindtap="openChapter" data-id="{{item.id}}">
-    <view class="chapter-num">{{item.part}}</view>
+    <view class="chapter-h-row">
+      <view class="chapter-num">{{item.part}}</view>
+      <view class="chapter-badge">📑 {{item.notes.length}} 张笔记</view>
+    </view>
     <view class="chapter-title">第{{item.cnNum}}章 · {{item.title}}</view>
-    <view class="chapter-twist">{{item.summary}}</view>
+    <view class="chapter-oneline">{{item.oneLine}}</view>
     <view class="twist-hook">⚡ {{item.twist.hook}}</view>
   </view>
 

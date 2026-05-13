@@ -1,25 +1,36 @@
 <view class="page-wrap" wx:if="{{chapter}}">
 
+  <!-- 章节标题区 -->
   <view class="hero">
     <view class="muted" style="font-size:22rpx;">{{chapter.part}}</view>
     <view class="hero-title" style="font-size:38rpx;margin-top:8rpx;">第{{cnNum}}章 · {{chapter.title}}</view>
-    <view class="hero-sub" style="margin-top:16rpx;">{{chapter.summary}}</view>
+    <view class="hero-oneline">{{chapter.oneLine}}</view>
+  </view>
+
+  <!-- 笔记卡片列表 -->
+  <view class="section-h">📑 阅读笔记 · {{chapter.notes.length}} 张卡片</view>
+
+  <view wx:for="{{chapter.notes}}" wx:key="title" wx:for-item="note"
+        class="note note-{{note.type}}">
+    <view class="note-h">
+      <text class="note-icon">{{noteTypes[note.type].icon}}</text>
+      <text class="note-tag" style="background:{{noteTypes[note.type].color}};">{{noteTypes[note.type].label}}</text>
+    </view>
+    <view class="note-title">{{note.title}}</view>
+    <view class="note-body">{{note.body}}</view>
+  </view>
+
+  <!-- 反预期判断题(压轴) -->
+  <view class="divider"></view>
+  <view class="section-h" style="color:#a855f7;">⚡ 反预期 · 测一下你的直觉</view>
+
+  <view class="twist-card">
+    <view class="twist-hook" style="font-size:30rpx;">{{chapter.twist.hook}}</view>
+    <view class="twist-body">{{chapter.twist.body}}</view>
   </view>
 
   <view class="card">
-    <view class="card-h">
-      <text class="card-tag">反预期</text>
-      <text class="card-title" style="font-size:28rpx;">这一章颠覆什么直觉?</text>
-    </view>
-    <view class="twist-hook" style="margin-top:12rpx;font-size:28rpx;">{{chapter.twist.hook}}</view>
-    <view class="card-body" style="margin-top:16rpx;">{{chapter.twist.body}}</view>
-  </view>
-
-  <view class="card">
-    <view class="card-h">
-      <text class="card-tag" style="background:#22c55e;">判断题</text>
-      <text class="card-title" style="font-size:28rpx;">{{chapter.twist.quiz.q}}</text>
-    </view>
+    <view class="card-title" style="font-size:28rpx;">{{chapter.twist.quiz.q}}</view>
     <view wx:for="{{chapter.twist.quiz.options}}" wx:key="t"
           wx:for-item="opt" wx:for-index="i"
           class="option {{answered && selectedIdx===i ? (opt.correct?'option-correct':'option-wrong') : ''}} {{answered && opt.correct && selectedIdx!==i ? 'option-reveal':''}}"
@@ -34,11 +45,22 @@
     </view>
   </view>
 
-  <view class="row" style="margin-top:24rpx;">
+  <!-- 章节关联模拟器 -->
+  <view wx:if="{{chapter.linkSim}}" class="link-sim" bindtap="goSim" data-sim="{{chapter.linkSim.sim}}">
+    <view class="link-sim-icon">→</view>
+    <view class="link-sim-body">
+      <view class="link-sim-label">{{linkSimLabel}}</view>
+      <view class="link-sim-desc">{{chapter.linkSim.label}}</view>
+    </view>
+  </view>
+
+  <!-- 导航 -->
+  <view class="row" style="margin-top:32rpx;">
     <view class="col btn btn-ghost" bindtap="goPrev" wx:if="{{prevId}}">← 上一章</view>
     <view class="col btn btn-ghost" bindtap="goNext" wx:if="{{nextId}}">下一章 →</view>
   </view>
 
+  <!-- 模拟器联动按钮 -->
   <view class="card" style="margin-top:24rpx;">
     <view class="card-title" style="font-size:26rpx;">把这一章和模拟器关联起来</view>
     <view class="row" style="margin-top:16rpx;">

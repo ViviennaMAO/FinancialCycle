@@ -1,8 +1,8 @@
 <view class="page-wrap">
 
   <view class="hero">
-    <view class="hero-title" style="font-size:36rpx;">反预期事实表</view>
-    <view class="hero-sub">每一条都违反"市场常识",但都有书中的数据 / 历史案例佐证</view>
+    <view class="hero-title" style="font-size:36rpx;">反预期速览</view>
+    <view class="hero-sub">每一条都违反"市场常识",但都有书中数据 / 案例佐证</view>
     <view class="hero-en">11 chapters, 11 contrarian truths</view>
   </view>
 
@@ -13,7 +13,7 @@
     </view>
     <view class="twist-hook" style="margin-top:8rpx;">⚡ {{item.twist.hook}}</view>
     <view class="card-body" style="margin-top:16rpx;font-size:24rpx;">{{item.twist.body}}</view>
-    <view class="muted" style="font-size:22rpx;margin-top:16rpx;">→ 点开做判断题</view>
+    <view class="muted" style="font-size:22rpx;margin-top:16rpx;">→ 点开本章阅读笔记 + 判断题</view>
   </view>
 
 </view>

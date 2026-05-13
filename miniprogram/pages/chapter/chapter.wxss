@@ -1,3 +1,83 @@
+/* 章节封面副标题 */
+.hero-oneline {
+  font-size: 26rpx;
+  color: #cbd5e1;
+  margin-top: 16rpx;
+  line-height: 1.55;
+  font-style: italic;
+  border-top: 1rpx solid #1f3a5f;
+  padding-top: 16rpx;
+}
+
+/* 笔记卡片 */
+.note {
+  background: #102a4d;
+  border: 1rpx solid #1f3a5f;
+  border-left: 8rpx solid #3b82f6;
+  border-radius: 16rpx;
+  padding: 24rpx 28rpx;
+  margin-bottom: 20rpx;
+}
+.note-insight   { border-left-color: #3b82f6; }
+.note-data      { border-left-color: #10b981; }
+.note-case      { border-left-color: #a16207; }
+.note-framework { border-left-color: #f0b429; }
+.note-warning   { border-left-color: #ef4444; }
+.note-quote     { border-left-color: #a855f7; background: #1a0f2e; }
+
+.note-h {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 12rpx;
+}
+.note-icon { font-size: 28rpx; }
+.note-tag {
+  color: #0a1628;
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  font-weight: 700;
+  letter-spacing: 1rpx;
+}
+.note-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 12rpx;
+  line-height: 1.4;
+}
+.note-body {
+  font-size: 26rpx;
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+.note-quote .note-body {
+  font-style: italic;
+  color: #c4b5fd;
+}
+
+/* 反预期 twist 卡片 */
+.twist-card {
+  background: linear-gradient(135deg, #1a0f2e 0%, #2d1b4e 100%);
+  border: 1rpx solid #6d28d9;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 24rpx;
+}
+.twist-hook {
+  color: #f5d0fe;
+  font-weight: 700;
+  margin-bottom: 16rpx;
+  line-height: 1.5;
+}
+.twist-body {
+  color: #c4b5fd;
+  font-size: 26rpx;
+  line-height: 1.7;
+}
+
+/* 选项 */
 .option {
   display: flex;
   align-items: flex-start;
@@ -24,7 +104,6 @@
   font-weight: 700;
   flex-shrink: 0;
 }
-
 .opt-text {
   flex: 1;
   color: #e8edf5;
@@ -34,9 +113,39 @@
 
 .option-correct { background: rgba(34, 197, 94, 0.15); border-color: #22c55e; }
 .option-correct .opt-letter { background: #22c55e; color: #0a1628; }
-
 .option-wrong { background: rgba(239, 68, 68, 0.15); border-color: #ef4444; }
 .option-wrong .opt-letter { background: #ef4444; color: #fff; }
-
 .option-reveal { border-color: #22c55e; }
 .option-reveal .opt-letter { background: #22c55e; color: #0a1628; }
+
+/* 章节级模拟器联动横幅 */
+.link-sim {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  background: linear-gradient(135deg, #102a4d 0%, #1f3a5f 100%);
+  border: 1rpx solid #f0b429;
+  border-radius: 16rpx;
+  padding: 24rpx 28rpx;
+  margin-top: 32rpx;
+}
+.link-sim:active { opacity: 0.7; }
+.link-sim-icon {
+  font-size: 48rpx;
+  color: #f0b429;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.link-sim-body { flex: 1; }
+.link-sim-label {
+  color: #f0b429;
+  font-weight: 700;
+  font-size: 28rpx;
+  text-transform: uppercase;
+  letter-spacing: 2rpx;
+}
+.link-sim-desc {
+  color: #cbd5e1;
+  font-size: 24rpx;
+  margin-top: 4rpx;
+}

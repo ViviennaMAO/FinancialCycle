@@ -1,4 +1,4 @@
-const { CHAPTERS } = require('../../data/chapters.js');
+const { CHAPTERS, NOTE_TYPES } = require('../../data/chapters.js');
 const CN_NUM = ['零','一','二','三','四','五','六','七','八','九','十','十一','十二'];
 const app = getApp();
 
@@ -7,6 +7,7 @@ Page({
     chapter: null,
     cnNum: '',
     letters: ['A','B','C','D'],
+    noteTypes: NOTE_TYPES,
     answered: false,
     selectedIdx: -1,
     isCorrect: false,
@@ -20,11 +21,11 @@ Page({
     if (idx < 0) return;
     const c = CHAPTERS[idx];
 
-    // restore saved answer if user already attempted this chapter
     const saved = (app.globalData.progress || {})[id] || {};
 
     this.setData({
       chapter: c,
+      linkSimLabel: c.linkSim ? c.linkSim.sim.toUpperCase() : '',
       cnNum: CN_NUM[c.id],
       prevId: idx > 0 ? CHAPTERS[idx - 1].id : null,
       nextId: idx < CHAPTERS.length - 1 ? CHAPTERS[idx + 1].id : null,
@@ -34,6 +35,9 @@ Page({
     });
 
     wx.setNavigationBarTitle({ title: '第' + CN_NUM[c.id] + '章 · ' + c.title });
+
+    // scroll to top — important when jumping between chapters
+    wx.pageScrollTo({ scrollTop: 0, duration: 0 });
   },
 
   pick(e) {
@@ -41,10 +45,8 @@ Page({
     const i = +e.currentTarget.dataset.idx;
     const opt = this.data.chapter.twist.quiz.options[i];
     const correct = !!opt.correct;
-
     this.setData({ answered: true, selectedIdx: i, isCorrect: correct });
     app.saveProgress(this.data.chapter.id, { selectedIdx: i, correct });
-
     wx.vibrateShort && wx.vibrateShort({ type: 'light' });
   },
 
