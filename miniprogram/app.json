@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/npv/npv",
-    "pages/irr/irr",
-    "pages/wacc/wacc",
+    "pages/cycle/cycle",
+    "pages/assets/assets",
+    "pages/bubble/bubble",
     "pages/twist/twist",
     "pages/chapter/chapter"
   ],
@@ -20,11 +20,11 @@
     "backgroundColor": "#0a1628",
     "borderStyle": "black",
     "list": [
-      { "pagePath": "pages/index/index", "text": "目录" },
-      { "pagePath": "pages/npv/npv",     "text": "NPV"  },
-      { "pagePath": "pages/irr/irr",     "text": "IRR"  },
-      { "pagePath": "pages/wacc/wacc",   "text": "WACC" },
-      { "pagePath": "pages/twist/twist", "text": "反预期" }
+      { "pagePath": "pages/index/index",   "text": "目录" },
+      { "pagePath": "pages/cycle/cycle",   "text": "周期定位" },
+      { "pagePath": "pages/assets/assets", "text": "资产配置" },
+      { "pagePath": "pages/bubble/bubble", "text": "泡沫体检" },
+      { "pagePath": "pages/twist/twist",   "text": "反预期" }
     ]
   },
   "style": "v2",

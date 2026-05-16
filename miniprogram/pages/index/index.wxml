@@ -41,13 +41,14 @@
   <view class="card">
     <view class="card-title">这本互动手册做什么?</view>
     <view class="card-body">
-      把这本高盛首席策略师 35 年经验之书"拆"给你 — 每章一份高度浓缩的阅读笔记,加上 3 个能动手玩的模拟器:
+      把这本高盛首席策略师 35 年经验之书"拆"给你 — 每章一份高度浓缩的阅读笔记,加上 3 个能动手玩的工具:
     </view>
     <view style="margin-top:16rpx;line-height:2;">
       <view><text class="accent">·阅读笔记</text> <text class="muted">— 每章 6-8 张分类卡片(洞察 / 数据 / 案例 / 警示 / 金句)</text></view>
-      <view><text class="accent">·反预期题</text> <text class="muted">— 每章一道判断题,先猜再揭晓</text></view>
-      <view><text class="accent">·三个模拟器</text> <text class="muted">— NPV / IRR / WACC,带周期阶段感知</text></view>
-      <view><text class="accent">·实时数据</text> <text class="muted">— 接 FRED,让书的论点活在今天的市场</text></view>
+      <view><text class="accent">·🧭 周期定位</text> <text class="muted">— 4 个直觉问题,判断现在是 4 阶段的哪一段</text></view>
+      <view><text class="accent">·⚖️ 资产配置</text> <text class="muted">— 当前阶段下股 / 债 / 黄金 / 现金的最优比例</text></view>
+      <view><text class="accent">·🫧 泡沫体检</text> <text class="muted">— 6 共性自评,对照 1929 / 2000 / 2007 等历史泡沫</text></view>
+      <view><text class="accent">·⚡ 反预期题</text> <text class="muted">— 每章一道判断题,先猜再揭晓</text></view>
     </view>
   </view>
 

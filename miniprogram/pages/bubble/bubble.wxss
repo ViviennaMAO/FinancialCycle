@@ -1,0 +1,139 @@
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 16rpx;
+  background: #0a1628;
+  border: 1rpx solid #1f3a5f;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  margin-top: 12rpx;
+}
+.opt:active { opacity: 0.7; }
+.opt-on {
+  background: rgba(240, 180, 41, 0.1);
+  border-color: #f0b429;
+}
+.opt-score {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  border: 2rpx solid #1f3a5f;
+  text-align: center;
+  line-height: 40rpx;
+  color: #94a3b8;
+  font-size: 24rpx;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.opt-score-on {
+  background: #f0b429;
+  border-color: #f0b429;
+  color: #0a1628;
+}
+.opt-text {
+  flex: 1;
+  color: #e8edf5;
+  font-size: 26rpx;
+  line-height: 1.55;
+}
+
+.score-card {
+  background: #102a4d;
+  border: 1rpx solid #1f3a5f;
+  border-radius: 20rpx;
+  padding: 36rpx 28rpx;
+  margin: 24rpx 0;
+}
+.score-h {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 24rpx;
+  margin-bottom: 8rpx;
+}
+.score-number {
+  text-align: center;
+  font-size: 96rpx;
+  font-weight: 700;
+  line-height: 1;
+}
+.score-max {
+  font-size: 36rpx;
+  color: #7a8aa3;
+  font-weight: 400;
+  margin-left: 8rpx;
+}
+.score-track {
+  height: 16rpx;
+  background: #0a1628;
+  border-radius: 8rpx;
+  margin: 24rpx 0 16rpx;
+  overflow: hidden;
+}
+.score-fill {
+  height: 100%;
+  transition: width 0.3s;
+  border-radius: 8rpx;
+}
+.score-level {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 700;
+}
+.score-desc {
+  margin-top: 12rpx;
+  color: #cbd5e1;
+  font-size: 26rpx;
+  line-height: 1.7;
+}
+
+.historical-match {
+  background: #0a1628;
+  border-left: 6rpx solid #f0b429;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  margin-top: 24rpx;
+}
+.historical-h {
+  color: #f0b429;
+  font-size: 22rpx;
+  margin-bottom: 8rpx;
+}
+.historical-name {
+  color: #f8fafc;
+  font-size: 28rpx;
+  font-weight: 700;
+  margin-bottom: 8rpx;
+}
+.historical-notes {
+  color: #cbd5e1;
+  font-size: 24rpx;
+  line-height: 1.7;
+}
+
+.historical-row {
+  background: #102a4d;
+  border: 1rpx solid #1f3a5f;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  margin-bottom: 12rpx;
+}
+.historical-row-h {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8rpx;
+}
+.historical-row-name {
+  color: #f8fafc;
+  font-size: 26rpx;
+  font-weight: 700;
+}
+.historical-row-score {
+  font-size: 28rpx;
+  font-weight: 700;
+}
+.historical-row-notes {
+  color: #cbd5e1;
+  font-size: 24rpx;
+  line-height: 1.6;
+}

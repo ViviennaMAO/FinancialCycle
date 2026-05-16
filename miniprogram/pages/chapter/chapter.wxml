@@ -60,13 +60,13 @@
     <view class="col btn btn-ghost" bindtap="goNext" wx:if="{{nextId}}">下一章 →</view>
   </view>
 
-  <!-- 模拟器联动按钮 -->
+  <!-- 跳到三件工具 -->
   <view class="card" style="margin-top:24rpx;">
-    <view class="card-title" style="font-size:26rpx;">把这一章和模拟器关联起来</view>
+    <view class="card-title" style="font-size:26rpx;">动手玩 · 把书的判断试一遍</view>
     <view class="row" style="margin-top:16rpx;">
-      <view class="col btn btn-ghost" bindtap="goSim" data-sim="npv">→ NPV</view>
-      <view class="col btn btn-ghost" bindtap="goSim" data-sim="irr">→ IRR</view>
-      <view class="col btn btn-ghost" bindtap="goSim" data-sim="wacc">→ WACC</view>
+      <view class="col btn btn-ghost" bindtap="goSim" data-sim="cycle">🧭 周期定位</view>
+      <view class="col btn btn-ghost" bindtap="goSim" data-sim="assets">⚖️ 资产配置</view>
+      <view class="col btn btn-ghost" bindtap="goSim" data-sim="bubble">🫧 泡沫体检</view>
     </view>
   </view>
 

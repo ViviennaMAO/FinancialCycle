@@ -1,0 +1,70 @@
+<view class="page-wrap">
+
+  <view class="hero">
+    <view class="hero-title" style="font-size:36rpx;">泡沫体检</view>
+    <view class="hero-sub">本书第八章总结的 6 共性 — 缺一不可。逐项打分,看现在的市场离历史几大泡沫有多远。</view>
+    <view class="hero-en">Bubble check-up · 6 hallmarks of mania</view>
+  </view>
+
+  <!-- 6 questions -->
+  <view wx:for="{{questions}}" wx:key="key" wx:for-item="q" class="card">
+    <view class="card-title" style="font-size:28rpx;">{{q.title}}</view>
+    <view class="muted" style="font-size:22rpx;margin-bottom:12rpx;">{{q.hint}}</view>
+    <view wx:for="{{q.options}}" wx:key="text" wx:for-item="opt"
+          class="opt {{answers[q.key] === opt.score ? 'opt-on' : ''}}"
+          data-qkey="{{q.key}}" data-score="{{opt.score}}"
+          bindtap="pick">
+      <view class="opt-score {{answers[q.key] === opt.score ? 'opt-score-on' : ''}}">{{opt.score}}</view>
+      <text class="opt-text">{{opt.text}}</text>
+    </view>
+  </view>
+
+  <!-- score panel -->
+  <view class="score-card" wx:if="{{totals.answered > 0}}">
+    <view class="score-h">你的泡沫体温</view>
+    <view class="score-number" style="color:{{verdict.color}};">
+      <text>{{totals.total}}</text>
+      <text class="score-max">/ {{totals.max}}</text>
+    </view>
+    <view class="score-track">
+      <view class="score-fill" style="width:{{totals.total / totals.max * 100}}%;background:{{verdict.color}};"></view>
+    </view>
+    <view class="score-level" style="color:{{verdict.color}};">{{verdict.level}}</view>
+    <view class="score-desc">{{verdict.desc}}</view>
+
+    <view wx:if="{{totals.answered < 6}}" class="muted" style="font-size:22rpx;margin-top:12rpx;text-align:center;">
+      还有 {{6 - totals.answered}} 道题没答 — 答完更准确
+    </view>
+
+    <view wx:if="{{closest}}" class="historical-match">
+      <view class="historical-h">📜 历史上和当前最接近的是</view>
+      <view class="historical-name">{{closest.name}} · {{closest.score}}/12</view>
+      <view class="historical-notes">{{closest.notes}}</view>
+    </view>
+
+    <view class="btn btn-ghost" style="margin-top:16rpx;" bindtap="reset">清空重来</view>
+  </view>
+
+  <view wx:if="{{totals.answered === 0}}" class="muted" style="text-align:center;font-size:24rpx;padding:32rpx;">
+    答几道题后,这里会给你"泡沫体温"+ 最接近的历史泡沫对照。
+  </view>
+
+  <!-- Historical comparison full table -->
+  <view class="section-h">历史大泡沫对照</view>
+  <view wx:for="{{historicalBubbles}}" wx:key="name" class="historical-row">
+    <view class="historical-row-h">
+      <text class="historical-row-name">{{item.name}}</text>
+      <text class="historical-row-score" style="color:{{ item.score >= 10 ? '#ef4444' : (item.score >= 7 ? '#f97316' : (item.score >= 4 ? '#f0b429' : '#22c55e')) }};">
+        {{item.score}}/12
+      </text>
+    </view>
+    <view class="historical-row-notes">{{item.notes}}</view>
+  </view>
+
+  <view class="card" style="margin-top:16rpx;">
+    <view class="muted" style="font-size:22rpx;line-height:1.7;">
+      提醒:高估值是泡沫的必要条件,不是充分条件。这本书的关键判断 — 1 项触发都不可怕,但 4 项以上同时出现,通常意味着系统性脆弱已经成形。
+    </view>
+  </view>
+
+</view>

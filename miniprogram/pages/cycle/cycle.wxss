@@ -1,0 +1,114 @@
+.opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 16rpx;
+  background: #0a1628;
+  border: 1rpx solid #1f3a5f;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  margin-top: 12rpx;
+  transition: all 0.2s;
+}
+.opt:active { opacity: 0.7; }
+.opt-on {
+  background: rgba(240, 180, 41, 0.1);
+  border-color: #f0b429;
+}
+.opt-dot {
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  border: 2rpx solid #1f3a5f;
+  flex-shrink: 0;
+  margin-top: 6rpx;
+}
+.opt-dot-on {
+  border-color: #f0b429;
+  background: #f0b429;
+  box-shadow: inset 0 0 0 4rpx #0a1628;
+}
+.opt-text {
+  flex: 1;
+  color: #e8edf5;
+  font-size: 26rpx;
+  line-height: 1.55;
+}
+
+.result-card {
+  background: #102a4d;
+  border: 1rpx solid #1f3a5f;
+  border-left: 8rpx solid #f0b429;
+  border-radius: 20rpx;
+  padding: 36rpx 32rpx;
+  margin-top: 24rpx;
+}
+.phase-despair  { border-left-color: #3b82f6; }
+.phase-hope     { border-left-color: #22c55e; }
+.phase-growth   { border-left-color: #f0b429; }
+.phase-optimism { border-left-color: #ef4444; }
+
+.phase-emoji {
+  font-size: 96rpx;
+  text-align: center;
+  margin-bottom: 12rpx;
+}
+.phase-name {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #f8fafc;
+  text-align: center;
+}
+.phase-stats {
+  font-size: 26rpx;
+  color: #f0b429;
+  text-align: center;
+  margin-top: 8rpx;
+  margin-bottom: 24rpx;
+}
+.phase-section {
+  background: #0a1628;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  margin-top: 16rpx;
+}
+.phase-section-h {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 8rpx;
+}
+.phase-section-body {
+  font-size: 26rpx;
+  color: #e8edf5;
+  line-height: 1.7;
+}
+.phase-quote {
+  font-style: italic;
+  color: #c4b5fd;
+  font-size: 24rpx;
+  text-align: center;
+  padding: 16rpx 0;
+  margin-top: 16rpx;
+}
+
+.link-banner {
+  background: linear-gradient(135deg, #102a4d 0%, #1f3a5f 100%);
+  border: 1rpx solid #f0b429;
+  color: #f0b429;
+  text-align: center;
+  padding: 20rpx;
+  border-radius: 12rpx;
+  margin-top: 16rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+.link-banner:active { opacity: 0.7; }
+
+.row-tr {
+  display: flex;
+  padding: 14rpx 0;
+}
+.row-td {
+  flex: 1;
+  font-size: 26rpx;
+}

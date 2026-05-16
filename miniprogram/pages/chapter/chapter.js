@@ -27,9 +27,17 @@ Page({
     // (e.g. "附章"). Otherwise default to "第N章" using the Chinese numeral.
     const headerLabel = c.displayLabel || ('第' + CN_NUM[c.id] + '章');
 
+    // Map sim id → human label for the link banner.
+    const SIM_LABEL = {
+      cycle:  '🧭 周期定位',
+      assets: '⚖️ 资产配置',
+      bubble: '🫧 泡沫体检'
+    };
+    const linkSimLabel = c.linkSim ? (SIM_LABEL[c.linkSim.sim] || c.linkSim.sim) : '';
+
     this.setData({
       chapter: c,
-      linkSimLabel: c.linkSim ? c.linkSim.sim.toUpperCase() : '',
+      linkSimLabel,
       cnNum: CN_NUM[c.id],
       headerLabel,
       prevId: idx > 0 ? CHAPTERS[idx - 1].id : null,

@@ -1,0 +1,119 @@
+<view class="page-wrap">
+
+  <view class="hero">
+    <view class="hero-title" style="font-size:36rpx;">资产配置</view>
+    <view class="hero-sub">基于本书表 4.1 的资产 4 阶段轮换 — 不同周期阶段下,股 / 债 / 黄金 / 大宗 / 现金的最优比例完全不同。</view>
+    <view class="hero-en">Cycle-aware asset allocation</view>
+  </view>
+
+  <!-- Phase picker -->
+  <view class="card">
+    <view class="card-title" style="font-size:28rpx;">① 你判断现在是哪个阶段?</view>
+    <view wx:if="{{phaseFromCycle}}" class="muted" style="font-size:22rpx;margin-top:8rpx;">
+      ↪ 从「周期定位」带过来:{{phaseEmoji[phaseFromCycle]}} {{phaseLabel[phaseFromCycle]}}
+    </view>
+    <view class="phase-grid">
+      <view wx:for="{{phaseKeys}}" wx:key="*this" wx:for-item="p"
+            class="phase-tile {{phase === p ? 'phase-tile-on' : ''}}"
+            data-phase="{{p}}" bindtap="pickPhase">
+        <view class="phase-tile-emoji">{{phaseEmoji[p]}}</view>
+        <view class="phase-tile-name">{{phaseLabel[p]}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Risk picker -->
+  <view class="card">
+    <view class="card-title" style="font-size:28rpx;">② 你的风险偏好?</view>
+    <view class="risk-row">
+      <view wx:for="{{risks}}" wx:key="key" wx:for-item="r"
+            class="risk-tile {{risk === r.key ? 'risk-tile-on' : ''}}"
+            data-risk="{{r.key}}" bindtap="pickRisk">
+        <view class="risk-emoji">{{r.emoji}}</view>
+        <view class="risk-name">{{r.name}}</view>
+        <view class="risk-desc">{{r.desc}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Result: allocation -->
+  <view wx:if="{{allocation}}" class="card">
+    <view class="card-title" style="font-size:30rpx;">
+      建议组合 · {{phaseEmoji[phase]}} {{phaseLabel[phase]}} × {{riskLabel}}
+    </view>
+
+    <!-- Bar visualization (one row per asset) -->
+    <view class="bar-list">
+      <view wx:for="{{bars}}" wx:key="key" class="bar-row">
+        <view class="bar-label">
+          <text class="bar-dot" style="background:{{item.color}};"></text>
+          <text class="bar-name">{{item.name}}</text>
+          <text class="bar-pct">{{item.pct}}%</text>
+        </view>
+        <view class="bar-track">
+          <view class="bar-fill" style="width:{{item.pct}}%;background:{{item.color}};"></view>
+        </view>
+      </view>
+    </view>
+
+    <view class="muted" style="font-size:22rpx;margin-top:16rpx;">
+      ↪ 黄金 / 大宗:此阶段以 <text class="accent">{{altFlavor}}</text> 为主
+    </view>
+
+    <view class="phase-section" style="margin-top:24rpx;">
+      <view class="phase-section-h">为什么这么配?</view>
+      <view class="phase-section-body">{{rationale}}</view>
+    </view>
+
+    <view class="phase-section" style="margin-top:16rpx;">
+      <view class="phase-section-h">股票内部 · 风格倾向</view>
+      <view class="phase-section-body">
+        <text class="accent">{{styleTilt.primary}}</text>
+      </view>
+      <view class="muted" style="font-size:22rpx;margin-top:8rpx;">
+        {{styleTilt.secondary}}
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{!allocation}}" class="muted" style="text-align:center;font-size:24rpx;padding:32rpx;">
+    选择阶段 + 风险偏好后,这里会显示建议组合。
+  </view>
+
+  <!-- Cross-phase reference table -->
+  <view class="section-h">4 阶段下的赢家(本书表 4.1 总结)</view>
+  <view class="card">
+    <view class="row-tr">
+      <text class="row-td accent">阶段</text>
+      <text class="row-td muted">第一赢家</text>
+      <text class="row-td muted">第二</text>
+    </view>
+    <view class="row-tr" style="border-top:1rpx dashed #1f3a5f;">
+      <text class="row-td">🥶 绝望期</text>
+      <text class="row-td success">政府债</text>
+      <text class="row-td">黄金</text>
+    </view>
+    <view class="row-tr" style="border-top:1rpx dashed #1f3a5f;">
+      <text class="row-td">🌅 希望期</text>
+      <text class="row-td success">股票</text>
+      <text class="row-td">新兴市场</text>
+    </view>
+    <view class="row-tr" style="border-top:1rpx dashed #1f3a5f;">
+      <text class="row-td">🌱 增长期</text>
+      <text class="row-td success">大宗商品</text>
+      <text class="row-td">周期股</text>
+    </view>
+    <view class="row-tr" style="border-top:1rpx dashed #1f3a5f;">
+      <text class="row-td">🎉 乐观期</text>
+      <text class="row-td success">股票(估值)</text>
+      <text class="row-td">现金</text>
+    </view>
+  </view>
+
+  <view class="card" style="margin-top:16rpx;">
+    <view class="muted" style="font-size:22rpx;line-height:1.7;">
+      本表是历史平均规律,不是预测。你的真实配置还要考虑:① 你的剩余投资寿命(60 岁和 30 岁不同);② 税与汇率;③ 自己心理上能承受多大回撤。"配置"是个体决策,不是模型答案。
+    </view>
+  </view>
+
+</view>

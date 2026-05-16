@@ -1,0 +1,81 @@
+<view class="page-wrap">
+
+  <view class="hero">
+    <view class="hero-title" style="font-size:36rpx;">周期定位</view>
+    <view class="hero-sub">现在大盘像四阶段的哪一段?用 4 个直觉问题判断 → 投票多数决。</view>
+    <view class="hero-en">Where are we in the cycle?</view>
+  </view>
+
+  <!-- 4 questions -->
+  <view wx:for="{{questions}}" wx:key="key" wx:for-item="q" wx:for-index="qi"
+        class="card">
+    <view class="card-h">
+      <text class="card-tag">{{qi + 1}}/4</text>
+      <text class="card-title" style="font-size:28rpx;">{{q.title}}</text>
+    </view>
+    <view class="muted" style="font-size:22rpx;margin-bottom:16rpx;">{{q.hint}}</view>
+    <view wx:for="{{q.options}}" wx:key="text" wx:for-item="opt" wx:for-index="oi"
+          class="opt {{answers[q.key] === opt.phase ? 'opt-on' : ''}}"
+          data-qkey="{{q.key}}" data-phase="{{opt.phase}}"
+          bindtap="pick">
+      <view class="opt-dot {{answers[q.key] === opt.phase ? 'opt-dot-on' : ''}}"></view>
+      <text class="opt-text">{{opt.text}}</text>
+    </view>
+  </view>
+
+  <!-- result -->
+  <view wx:if="{{result.topPhase}}" class="result-card phase-{{result.topPhase}}">
+    <view class="phase-emoji">{{phaseEmoji[result.topPhase]}}</view>
+    <view class="phase-name">{{phaseLabel[result.topPhase]}}</view>
+    <view class="phase-stats">{{phaseReturn[result.topPhase].label}}</view>
+    <view wx:if="{{result.tie}}" class="muted" style="margin-top:8rpx;font-size:22rpx;">
+      你的回答在 {{phaseLabel[result.topPhase]}} 和 {{phaseLabel[result.secondPhase]}} 间摇摆 — 这本身可能意味着"过渡期"。
+    </view>
+    <view class="phase-section">
+      <view class="phase-section-h">✅ 该做的</view>
+      <view class="phase-section-body">{{phaseGuide[result.topPhase].do}}</view>
+    </view>
+    <view class="phase-section">
+      <view class="phase-section-h">❌ 该避免的</view>
+      <view class="phase-section-body">{{phaseGuide[result.topPhase].avoid}}</view>
+    </view>
+    <view class="phase-quote">{{phaseGuide[result.topPhase].quote}}</view>
+    <view class="link-banner" bindtap="goAssets">
+      → 跳到「资产配置」看这个阶段该怎么配
+    </view>
+  </view>
+
+  <!-- not yet answered all -->
+  <view wx:if="{{!result.topPhase}}" class="muted" style="text-align:center;font-size:24rpx;padding:32rpx;">
+    回答 4 个问题后,这里会显示你判断的周期阶段 + 历史平均回报 + 操作建议。
+  </view>
+
+  <!-- 4-phase reference table -->
+  <view class="section-h">四阶段对照(本书表 4.1 · 1973-2019 美股)</view>
+  <view class="card">
+    <view class="row-tr">
+      <text class="row-td accent">阶段</text>
+      <text class="row-td muted">平均年化</text>
+      <text class="row-td muted">中位数</text>
+    </view>
+    <view wx:for="{{phaseRows}}" wx:key="key" class="row-tr"
+          style="border-top:1rpx dashed #1f3a5f;">
+      <text class="row-td" style="color:{{phaseColor[item.key]}};font-weight:600;">
+        {{phaseEmoji[item.key]}} {{phaseLabel[item.key]}}
+      </text>
+      <text class="row-td">{{item.meanPct}}</text>
+      <text class="row-td">{{item.medianPct}}</text>
+    </view>
+  </view>
+
+  <view class="card" style="margin-top:16rpx;">
+    <view class="muted" style="font-size:22rpx;line-height:1.7;">
+      希望期回报最高,但发生在数据最差的时候。增长期数据最好,但市场已经定价完毕、平均仅 +2%。这就是为什么"等数据好了再入场"几乎注定踩反节奏 — 本书第三章的核心论点。
+    </view>
+  </view>
+
+  <view wx:if="{{result.topPhase}}" class="btn btn-ghost" style="margin-top:24rpx;" bindtap="reset">
+    清空重做
+  </view>
+
+</view>
