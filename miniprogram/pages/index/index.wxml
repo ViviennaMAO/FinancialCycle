@@ -6,10 +6,39 @@
     <view class="hero-en">The Long Good Buy · Peter C. Oppenheimer</view>
   </view>
 
+  <view class="card">
+    <view class="card-title">这本互动手册做什么?</view>
+    <view class="card-body">
+      把这本高盛首席策略师 35 年经验之书"拆"给你 — 每章一份高度浓缩的阅读笔记,加上 3 个能动手玩的工具:
+    </view>
+    <view style="margin-top:16rpx;line-height:2;">
+      <view><text class="accent">·阅读笔记</text> <text class="muted">— 每章 6-8 张分类卡片(洞察 / 数据 / 案例 / 警示 / 金句)</text></view>
+      <view><text class="accent">·🧭 周期定位</text> <text class="muted">— 4 个直觉问题,判断现在是 4 阶段的哪一段</text></view>
+      <view><text class="accent">·⚖️ 资产配置</text> <text class="muted">— 当前阶段下股 / 债 / 黄金 / 现金的最优比例</text></view>
+      <view><text class="accent">·🫧 泡沫体检</text> <text class="muted">— 6 共性自评,对照 1929 / 2000 / 2007 等历史泡沫</text></view>
+      <view><text class="accent">·⚡ 反预期题</text> <text class="muted">— 每章一道判断题,先猜再揭晓</text></view>
+    </view>
+  </view>
+
+  <view class="section-h">11 章 + 附章 · 12 份阅读笔记</view>
+
+  <view wx:for="{{chapters}}" wx:key="id" class="chapter-item" bindtap="openChapter" data-id="{{item.id}}">
+    <view class="chapter-h-row">
+      <view class="chapter-num">{{item.part}}</view>
+      <view class="chapter-badge">📑 {{item.notes.length}} 张笔记</view>
+    </view>
+    <view class="chapter-title">{{item.headerLabel}} · {{item.title}}</view>
+    <view class="chapter-oneline">{{item.oneLine}}</view>
+    <view class="twist-hook">⚡ {{item.twist.hook}}</view>
+  </view>
+
+  <!-- FRED 实时仪表盘 · 放在章节列表底部作为"参考数据"层 -->
+  <view class="section-h" style="margin-top:32rpx;">📡 当前市场实时参考</view>
+
   <view class="card fred-card">
     <view class="card-h">
       <text class="card-tag" style="background:#22c55e;">FRED · 实时</text>
-      <text class="card-title" style="font-size:28rpx;">当前周期定位</text>
+      <text class="card-title" style="font-size:28rpx;">现在的几个关键指标</text>
       <text class="muted" style="font-size:20rpx;margin-left:auto;" bindtap="refreshFred">
         {{fredLoading?'刷新中…':(fredUpdatedAt||'点此刷新')}}
       </text>
@@ -36,32 +65,10 @@
     <view wx:if="{{fredEnabled && yieldCurveWarning}}" class="twist-hook" style="margin-top:16rpx;">
       ⚠️ {{yieldCurveWarning}}
     </view>
-  </view>
 
-  <view class="card">
-    <view class="card-title">这本互动手册做什么?</view>
-    <view class="card-body">
-      把这本高盛首席策略师 35 年经验之书"拆"给你 — 每章一份高度浓缩的阅读笔记,加上 3 个能动手玩的工具:
+    <view wx:if="{{fredEnabled}}" class="muted" style="font-size:22rpx;margin-top:16rpx;line-height:1.6;">
+      数据接自 Federal Reserve Economic Data (FRED, St. Louis Fed) · 每 12 小时本地缓存一次。把这几个数字带进「周期定位」工具能直接给你"现在像哪个阶段"的判断。
     </view>
-    <view style="margin-top:16rpx;line-height:2;">
-      <view><text class="accent">·阅读笔记</text> <text class="muted">— 每章 6-8 张分类卡片(洞察 / 数据 / 案例 / 警示 / 金句)</text></view>
-      <view><text class="accent">·🧭 周期定位</text> <text class="muted">— 4 个直觉问题,判断现在是 4 阶段的哪一段</text></view>
-      <view><text class="accent">·⚖️ 资产配置</text> <text class="muted">— 当前阶段下股 / 债 / 黄金 / 现金的最优比例</text></view>
-      <view><text class="accent">·🫧 泡沫体检</text> <text class="muted">— 6 共性自评,对照 1929 / 2000 / 2007 等历史泡沫</text></view>
-      <view><text class="accent">·⚡ 反预期题</text> <text class="muted">— 每章一道判断题,先猜再揭晓</text></view>
-    </view>
-  </view>
-
-  <view class="section-h">11 章 + 附章 · 12 份阅读笔记</view>
-
-  <view wx:for="{{chapters}}" wx:key="id" class="chapter-item" bindtap="openChapter" data-id="{{item.id}}">
-    <view class="chapter-h-row">
-      <view class="chapter-num">{{item.part}}</view>
-      <view class="chapter-badge">📑 {{item.notes.length}} 张笔记</view>
-    </view>
-    <view class="chapter-title">{{item.headerLabel}} · {{item.title}}</view>
-    <view class="chapter-oneline">{{item.oneLine}}</view>
-    <view class="twist-hook">⚡ {{item.twist.hook}}</view>
   </view>
 
   <view class="divider"></view>
