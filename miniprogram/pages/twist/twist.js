@@ -5,7 +5,10 @@ Page({
   data: { items: [] },
 
   onLoad() {
-    const items = CHAPTERS.map(c => Object.assign({}, c, { cnNum: CN_NUM[c.id] }));
+    const items = CHAPTERS.map(c => Object.assign({}, c, {
+      cnNum: CN_NUM[c.id],
+      headerLabel: c.displayLabel || ('第' + CN_NUM[c.id] + '章')
+    }));
     this.setData({ items });
   },
 

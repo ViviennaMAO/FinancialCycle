@@ -3,7 +3,7 @@
   <!-- 章节标题区 -->
   <view class="hero">
     <view class="muted" style="font-size:22rpx;">{{chapter.part}}</view>
-    <view class="hero-title" style="font-size:38rpx;margin-top:8rpx;">第{{cnNum}}章 · {{chapter.title}}</view>
+    <view class="hero-title" style="font-size:38rpx;margin-top:8rpx;">{{headerLabel}} · {{chapter.title}}</view>
     <view class="hero-oneline">{{chapter.oneLine}}</view>
   </view>
 

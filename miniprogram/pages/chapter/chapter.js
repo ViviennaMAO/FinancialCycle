@@ -23,10 +23,15 @@ Page({
 
     const saved = (app.globalData.progress || {})[id] || {};
 
+    // For appendix-style chapters, the data carries an explicit `displayLabel`
+    // (e.g. "附章"). Otherwise default to "第N章" using the Chinese numeral.
+    const headerLabel = c.displayLabel || ('第' + CN_NUM[c.id] + '章');
+
     this.setData({
       chapter: c,
       linkSimLabel: c.linkSim ? c.linkSim.sim.toUpperCase() : '',
       cnNum: CN_NUM[c.id],
+      headerLabel,
       prevId: idx > 0 ? CHAPTERS[idx - 1].id : null,
       nextId: idx < CHAPTERS.length - 1 ? CHAPTERS[idx + 1].id : null,
       answered: saved.selectedIdx != null,
@@ -34,7 +39,7 @@ Page({
       isCorrect: !!saved.correct
     });
 
-    wx.setNavigationBarTitle({ title: '第' + CN_NUM[c.id] + '章 · ' + c.title });
+    wx.setNavigationBarTitle({ title: headerLabel + ' · ' + c.title });
 
     // scroll to top — important when jumping between chapters
     wx.pageScrollTo({ scrollTop: 0, duration: 0 });

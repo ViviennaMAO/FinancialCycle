@@ -51,14 +51,14 @@
     </view>
   </view>
 
-  <view class="section-h">11 章 · 每章一份阅读笔记</view>
+  <view class="section-h">11 章 + 附章 · 12 份阅读笔记</view>
 
   <view wx:for="{{chapters}}" wx:key="id" class="chapter-item" bindtap="openChapter" data-id="{{item.id}}">
     <view class="chapter-h-row">
       <view class="chapter-num">{{item.part}}</view>
       <view class="chapter-badge">📑 {{item.notes.length}} 张笔记</view>
     </view>
-    <view class="chapter-title">第{{item.cnNum}}章 · {{item.title}}</view>
+    <view class="chapter-title">{{item.headerLabel}} · {{item.title}}</view>
     <view class="chapter-oneline">{{item.oneLine}}</view>
     <view class="twist-hook">⚡ {{item.twist.hook}}</view>
   </view>

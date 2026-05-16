@@ -3,12 +3,12 @@
   <view class="hero">
     <view class="hero-title" style="font-size:36rpx;">反预期速览</view>
     <view class="hero-sub">每一条都违反"市场常识",但都有书中数据 / 案例佐证</view>
-    <view class="hero-en">11 chapters, 11 contrarian truths</view>
+    <view class="hero-en">11 chapters + 1 appendix · 12 contrarian truths</view>
   </view>
 
   <view class="card" wx:for="{{items}}" wx:key="id" bindtap="openChapter" data-id="{{item.id}}">
     <view class="card-h">
-      <text class="card-tag">第{{item.cnNum}}章</text>
+      <text class="card-tag">{{item.headerLabel}}</text>
       <text class="card-title" style="font-size:28rpx;">{{item.title}}</text>
     </view>
     <view class="twist-hook" style="margin-top:8rpx;">⚡ {{item.twist.hook}}</view>
